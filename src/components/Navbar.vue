@@ -1,37 +1,35 @@
 <template>
   <div class="navbar">
     <h1 class="title">Vuestagram</h1>
-    <a class="homeLink" href="">home</a>
-    
+    <a class="homeLink" href="" @click="$emit('view')">home</a>
+
     <upload />
-    
   </div>
 </template>
 
 <script>
-
-import Upload from "./Upload";    ////
+import Upload from "./Upload"; ////
 
 export default {
   name: "Navbar",
-  components : {        ///
-    upload : Upload     ///
+  props: ["view"],
+  components: {
+    ///
+    upload: Upload ///
   },
-  data: () => ({                      ///
-    //navtitle: "This is the Navbar"  ///
-  })                                  ///
+  data: () => ({}) ///
 };
 </script>
 
 <style>
-  h1 {
-    color: white;
-  }
-  .NavBackground {
-    background-color: cadetblue;
-  }
+h1 {
+  color: white;
+}
+.NavBackground {
+  background-color: cadetblue;
+}
 
-  .navbar {
+.navbar {
   padding: 2rem;
   display: flex;
   justify-content: flex-end;
@@ -42,7 +40,7 @@ export default {
   cursor: pointer;
   margin-right: auto;
 }
-  
+
 .button {
   cursor: pointer;
 }
@@ -56,15 +54,14 @@ button {
   height: 2rem;
 }
 
-.homeLink{
-  position:absolute;
-  left:50px
+.homeLink {
+  position: absolute;
+  left: 50px;
 }
 
-.title{
-  position:absolute;
+.title {
+  position: absolute;
   left: 380px;
   color: white;
 }
-
 </style>

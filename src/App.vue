@@ -2,9 +2,16 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <h1>{{ getPhotosFromS3() }}</h1>
-    <navbar />
+    <navbar v-on:view="view" />
 
-    <allphotos :photos="getPhotosFromS3" />
+    <div v-if="currentView === 'AllView'">
+      <div v-for="photo in this.photos" :key="photo.id">
+        <allphotos :photo="photo" v-on:getphoto="getphoto" />
+      </div>
+    </div>
+    <div v-else>
+      <singlephoto :selectedPhoto="selectedPhoto" />
+    </div>
   </div>
 </template>
 
@@ -27,12 +34,20 @@ export default {
     photos: [], ///
     selectedPhoto: "" ///
   }),
-  created() {
-    this.getPhotosFromS3;
+  async created() {
+    await this.getPhotosFromS3;
   },
   methods: {
     say(message) {
       alert(message);
+    },
+    view() {
+      this.currentView = "AllView";
+    },
+    getphoto(somePhoto) {
+      this.selectedPhoto = somePhoto;
+      this.currentView = "SingleView";
+      console.log("this.currentView ", this.currentView);
     },
     getPhotosFromS3() {
       // let testArray = [];
