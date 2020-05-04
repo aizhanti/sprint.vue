@@ -27,7 +27,9 @@ export default {
     photos: [], ///
     selectedPhoto: "" ///
   }),
-  created() {this.getPhotosFromS3},
+  created() {
+    this.getPhotosFromS3;
+  },
   methods: {
     say(message) {
       alert(message);
